@@ -3,8 +3,11 @@ import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 import Rating from './Rating';
 
+
 function Product(props) {
     const { product } = props;
+
+
     return (
         <Card>
             <Link to={`/product/${product.slug}`}>
@@ -25,6 +28,6 @@ function Product(props) {
                 )}
             </Card.Body>
         </Card>
-    );
+    )
 }
 export default Product;
