@@ -2,7 +2,7 @@ import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import HomeScreen from './screens/HomeScreen';
-import ProductScreen from './screens/ProductScreen';
+// import ProductScreen from './screens/ProductScreen';
 import SigninScreen from './screens/SigninScreen';
 import SignupScreen from './screens/SignupScreen';
 import ShippingAddressScreen from "./screens/ShippingAddressScreen";
@@ -19,7 +19,7 @@ import { useContext } from 'react';
 import { Store } from './Store';
 import OrderScreen from "./screens/OrderScreen";
 import OrderHistoryScreen from './screens/OrderHistoryScreen';
-
+import ProfileScreen from './screens/ProfileScreen';
 function App() {
     const { state, dispatch: ctxDispatch } = useContext(Store);
     const { cart, userInfo } = state;
@@ -29,6 +29,7 @@ function App() {
         localStorage.removeItem('userInfo');
         localStorage.removeItem('shippingAddress');
         localStorage.removeItem('paymentMethod');
+        window.location.href = '/signin';
     };
 
     return (
@@ -81,8 +82,9 @@ function App() {
                 <main>
                     <Container className="mt-3">
                         <Routes>
-                            <Route path="/product/:slug" element={<ProductScreen />} />
-
+                            <Route path="/cart" element={<CartScreen />} />
+                            {/*<Route path="/product/:slug" element={<ProductScreen />} />*/}
+                            <Route path="/profile" element={<ProfileScreen />} />
                             <Route path="/signin" element={<SigninScreen />} />
                             <Route path="/signup" element={<SignupScreen />} />
                             <Route path="/payment" element={<PaymentMethodScreen />}></Route>
