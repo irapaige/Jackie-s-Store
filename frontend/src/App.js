@@ -18,6 +18,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 import { useContext } from 'react';
 import { Store } from './Store';
 import OrderScreen from "./screens/OrderScreen";
+import OrderHistoryScreen from './screens/OrderHistoryScreen';
 
 function App() {
     const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -35,22 +36,22 @@ function App() {
             <div className="d-flex flex-column site-container">
                 <ToastContainer position="bottom-center" limit={1} />
                 <header>
-                    <Navbar bg="dark" variant="dark">
+                    <Navbar bg="dark" variant="dark" expand="lg">
                         <Container>
                             <LinkContainer to="/">
                                 <Navbar.Brand>Jackie's Store</Navbar.Brand>
                             </LinkContainer>
-                            <Nav className="me-auto">
-                                <Link to="/cart" className="nav-link">
-                                    Cart
-                                    {cart.cartItems.length > 0 && (
-                                        <Badge pill bg="danger">
-
-                                            {cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
-                                        </Badge>
-                                    )}
-                                </Link>
-                                {userInfo ? (
+                            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                            <Navbar.Collapse id="basic-navbar-nav">
+                                <Nav className="me-auto  w-100  justify-content-end">
+                                    <Link to="/cart" className="nav-link">
+                                        Cart
+                                        {cart.cartItems.length > 0 && (
+                                            <Badge pill bg="danger">
+                                                {cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
+                                            </Badge>
+                                        )}
+                                    </Link>
                                     <NavDropdown title={userInfo.name} id="basic-nav-dropdown">
                                         <LinkContainer to="/profile">
                                             <NavDropdown.Item>User Profile</NavDropdown.Item>
@@ -67,12 +68,13 @@ function App() {
                                             Sign Out
                                         </Link>
                                     </NavDropdown>
-                                ) : (
+                                    ) : (
                                     <Link className="nav-link" to="/signin">
                                         Sign In
                                     </Link>
-                                )}
-                            </Nav>
+                                    )}
+                                </Nav>
+                            </Navbar.Collapse>
                         </Container>
                     </Navbar>
                 </header>
@@ -89,6 +91,10 @@ function App() {
                             <Route path="/" element={<HomeScreen />} />
                             <Route path="/shipping" element={<ShippingAddressScreen />} />
                             <Route path="/order/:id" element={<OrderScreen />}></Route>
+                            <Route path="/orderhistory" element={<OrderHistoryScreen />} ></Route>
+
+
+
                         </Routes>
                     </Container>
                 </main>
