@@ -17,6 +17,7 @@ import PlaceOrderScreen from './screens/PlaceOrderScreen';
 import { LinkContainer } from 'react-router-bootstrap';
 import { useContext } from 'react';
 import { Store } from './Store';
+import OrderScreen from "./screens/OrderScreen";
 
 function App() {
     const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -83,10 +84,11 @@ function App() {
                             <Route path="/signin" element={<SigninScreen />} />
                             <Route path="/signup" element={<SignupScreen />} />
                             <Route path="/payment" element={<PaymentMethodScreen />}></Route>
-
+                            <Route path="/order/:id" element={<OrderScreen />}></Route>
                             <Route path="/placeorder" element={<PlaceOrderScreen />} /><Route path="/cart" element={<CartScreen />} />
                             <Route path="/" element={<HomeScreen />} />
                             <Route path="/shipping" element={<ShippingAddressScreen />} />
+                            <Route path="/order/:id" element={<OrderScreen />}></Route>
                         </Routes>
                     </Container>
                 </main>
