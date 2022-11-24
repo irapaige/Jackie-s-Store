@@ -13,6 +13,7 @@ import Nav from 'react-bootstrap/Nav';
 import PaymentMethodScreen from './screens/PaymentMethodScreen';
 import CartScreen from './screens/CartScreen';
 import Container from 'react-bootstrap/Container';
+import PlaceOrderScreen from './screens/PlaceOrderScreen';
 import { LinkContainer } from 'react-router-bootstrap';
 import { useContext } from 'react';
 import { Store } from './Store';
@@ -82,7 +83,8 @@ function App() {
                             <Route path="/signin" element={<SigninScreen />} />
                             <Route path="/signup" element={<SignupScreen />} />
                             <Route path="/payment" element={<PaymentMethodScreen />}></Route>
-                            <Route path="/cart" element={<CartScreen />} />
+
+                            <Route path="/placeorder" element={<PlaceOrderScreen />} /><Route path="/cart" element={<CartScreen />} />
                             <Route path="/" element={<HomeScreen />} />
                             <Route path="/shipping" element={<ShippingAddressScreen />} />
                         </Routes>
