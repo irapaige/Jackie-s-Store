@@ -15,10 +15,10 @@ main {
 
   flex: 1;
 }
-.btn-primary {
-  background-color: #f0c040;
-  color: #000000;
-}
+/*.btn-primary {*/
+/*  background-color: #f0c040;*/
+/*  color: #000000;*/
+/*}*/
 .products {
   display: flex;
   flex-wrap: wrap;
@@ -51,4 +51,7 @@ main {
 .checkout-steps>div.active{
   border-bottom: 0.2rem solid #f08000;
   color:#f08000;
+}
+#in-stock{
+  /*color:darkgreen;*/
 }

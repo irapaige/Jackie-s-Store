@@ -24,7 +24,7 @@ function Product(props) {
                         Out of stock
                     </Button>
                 ) : (
-                    <Button >Add to cart</Button>
+                    <Button id={'in-stock'}>In Stock</Button>
                 )}
             </Card.Body>
         </Card>
