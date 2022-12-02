@@ -1,5 +1,5 @@
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
-import { useContext } from 'react';
+import {useContext, useState} from 'react';
 import { Store } from './Store';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -33,10 +33,10 @@ function App() {
     localStorage.removeItem('paymentMethod');
     window.location.href = '/signin';
   };
-
+  const [sidebarIsOpen,setSidebarIsOpen]=useState(false)
   return (
     <BrowserRouter>
-      <div className='d-flex flex-column site-container'>
+      <div>
         <ToastContainer position='bottom-center' limit={1} />
         <header>
           <Navbar bg='dark' variant='dark' expand='lg'>
