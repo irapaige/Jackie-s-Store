@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useContext, useEffect, useReducer } from 'react';
+import {useContext, useEffect, useReducer, useState} from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -13,6 +13,7 @@ import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import { getError } from '../utils';
 import { Store } from '../Store';
+import {ListGroupItem} from "react-bootstrap";
 const reducer = (state, action) => {
     switch (action.type) {
         case 'FETCH_REQUEST':
@@ -29,6 +30,7 @@ function ProductScreen() {
     const navigate = useNavigate();
     const params = useParams();
     const { slug } = params;
+    const[qty,setQty]=useState()
     const [{ loading, error, product }, dispatch] = useReducer(reducer, {
         product: [],
         loading: true,
@@ -51,18 +53,15 @@ function ProductScreen() {
 
 
         const addToCartHandler = async () => {
-            const { cart } = state;
-            const existItem = cart.cartItems.find((x) => x._id === product._id);
-            const quantity = existItem ? existItem.quantity + 1 : 1;
             const { data } = await axios.get(`/api/products/${product._id}`);
-            if (data.countInStock < quantity) {
+            if (data.countInStock < qty) {
                 window.alert('Sorry. Product is out of stock');
                 return;
             }
             ctxDispatch({
                 type: 'CART_ADD_ITEM',
 
-                payload: { ...product, quantity },
+                payload: { ...product, qty},
             });
             navigate('/cart');
         };
@@ -94,7 +93,7 @@ function ProductScreen() {
                                     numReviews={product.numReviews}
                                 ></Rating>
                             </ListGroup.Item>
-                            <ListGroup.Item>Pirce : ${product.price}</ListGroup.Item>
+                            <ListGroup.Item>Price : ${product.price}</ListGroup.Item>
                             <ListGroup.Item>
                                 Description:
                                 <p>{product.description}</p>
@@ -105,6 +104,30 @@ function ProductScreen() {
                         <Card>
                             <Card.Body>
                                 <ListGroup variant="flush">
+                                    <ListGroupItem>
+                                        <Row>
+                                            <div className="qty">
+
+                                                <div>
+                                                    <select
+                                                        value={parseInt(qty)}
+                                                        onChange={(e) => setQty( parseInt(e.target.value))}
+
+
+                                                    >
+
+                                                        {[...Array(product.countInStock).keys()].map(
+                                                            (x) => (
+                                                                <option key={x } value={x }>
+                                                                    {x }
+                                                                </option>
+                                                            )
+                                                        )}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </Row>
+                                    </ListGroupItem>
                                     <ListGroup.Item>
                                         <Row>
                                             <Col>Price:</Col>

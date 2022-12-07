@@ -18,15 +18,15 @@ export default function CartScreen() {
         cart: { cartItems },
     } = state;
 
-    const updateCartHandler = async (item, quantity) => {
+    const updateCartHandler = async (item, qty) => {
         const { data } = await axios.get(`/api/products/${item._id}`);
-        if (data.countInStock < quantity) {
+        if (data.countInStock < qty) {
             window.alert('Sorry. Product is out of stock');
             return;
         }
         ctxDispatch({
             type: 'CART_ADD_ITEM',
-            payload: { ...item, quantity },
+            payload: { ...item, qty },
         });
     };
     const removeItemHandler = (item) => {
@@ -66,20 +66,20 @@ export default function CartScreen() {
 
                                                 <Button
                                                     onClick={() =>
-                                                        updateCartHandler(item, item.quantity - 1)
+                                                        updateCartHandler(item, item.qty - 1)
                                                     }
                                                     variant="light"
                                                     disabled={item.quantity === 1}
                                                 >
                                                     <i className="fas fa-minus-circle"></i>
                                                 </Button>{' '}
-                                                <span>{item.quantity}</span>{' '}
+                                                <span>{item.qty}</span>{' '}
                                                 <Button
                                                     variant="light"
                                                     onClick={() =>
-                                                        updateCartHandler(item, item.quantity + 1)
+                                                        updateCartHandler(item, item.qty + 1)
                                                     }
-                                                    disabled={item.quantity === item.countInStock}
+                                                    disabled={item.qty === item.countInStock}
                                                 >
                                                     <i className="fas fa-plus-circle"></i>
                                                 </Button>
@@ -106,9 +106,9 @@ export default function CartScreen() {
                                 <ListGroup variant="flush">
                                 <ListGroup.Item>
                                 <h3>
-                                Subtotal ({cartItems.reduce((a, c) => a + c.quantity, 0)}{' '}
+                                Subtotal ({cartItems.reduce((a, c) => a + c.qty, 0)}{' '}
                                 items) : $
-                            {cartItems.reduce((a, c) => a + c.price * c.quantity, 0)}
+                            {cartItems.reduce((a, c) => a + c.price * c.qty, 0)}
                                 </h3>
                                 </ListGroup.Item>
                                 <ListGroup.Item>
