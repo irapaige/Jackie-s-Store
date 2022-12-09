@@ -49,7 +49,7 @@ function ProductScreen() {
         fetchData();
     }, [slug]);
 
-    const { state, dispatch: ctxDispatch } = useContext(Store);
+    const {  dispatch: ctxDispatch } = useContext(Store);
 
 
         const addToCartHandler = async () => {
