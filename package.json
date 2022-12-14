@@ -2,11 +2,12 @@
   "name": "jackies_store",
   "version": "1.0.0",
   "main": "index.js",
-  "devDependencies": {},
   "scripts": {
+
     "build": "cd backend&& npm install && cd ../frontend &&npm install &&npm run build",
     "start": "node backend/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
+
   },
   "repository": {
     "type": "git",
@@ -18,5 +19,8 @@
     "url": "https://github.com/irapaige/Jackie-s-Store/issues"
   },
   "homepage": "https://github.com/irapaige/Jackie-s-Store#readme",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "concurrently": "^7.6.0"
+  }
 }
