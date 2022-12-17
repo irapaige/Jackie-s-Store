@@ -10,7 +10,7 @@ function Product(props) {
     <Card>
       <Link to={`/product/${product.slug}`}>
         <img
-          src={process.env.PUBLIC_URL + product.image}
+          src={process.env.REACT_APP_FRONTEND_URL + product.image}
           className='card-img-top'
           alt={product.name}
         />
