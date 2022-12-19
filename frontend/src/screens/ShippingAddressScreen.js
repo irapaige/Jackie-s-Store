@@ -17,7 +17,7 @@ export default function ShippingAddressScreen() {
   const [fullName, setFullName] = useState(shippingAddress.fullName || '');
   const [address, setAddress] = useState(shippingAddress.address || '');
   const [city, setCity] = useState(shippingAddress.city || '');
-  const [chosenState,setChosenState]= useState(shippingAddress.chosenState || '')
+  const [selectedstate,setSelectedstate]=useState(shippingAddress.selectedstate||"")
   const [postalCode, setPostalCode] = useState(
     shippingAddress.postalCode || ''
   );
@@ -37,7 +37,6 @@ export default function ShippingAddressScreen() {
         fullName,
         address,
         city,
-        chosenState,
         postalCode,
         country,
       },
@@ -48,7 +47,6 @@ export default function ShippingAddressScreen() {
         fullName,
         address,
         city,
-        chosenState,
         postalCode,
         country,
       })
@@ -89,11 +87,11 @@ export default function ShippingAddressScreen() {
               required
             />
           </Form.Group>
-          <Form.Group className='mb-3' controlId='chosenState'>
+          <Form.Group className='mb-3' controlId='selectedstate'>
             <Form.Label>State</Form.Label>
             <Form.Control
-                value={chosenState}
-                onChange={(e) => setChosenState(e.target.value)}
+                value={selectedstate}
+                onChange={(e) => setSelectedstate(e.target.value)}
                 required
             />
           </Form.Group>

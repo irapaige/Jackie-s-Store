@@ -33,7 +33,7 @@ function App() {
     localStorage.removeItem('paymentMethod');
     window.location.href = '/signin';
   };
-  const [sidebarIsOpen,setSidebarIsOpen]=useState(false)
+
   return (
     <BrowserRouter>
       <div>
@@ -48,7 +48,7 @@ function App() {
               <Navbar.Collapse id='basic-navbar-nav'>
                 <Nav className='me-auto  w-100  justify-content-end'>
                   <Link to='/cart' className='nav-link'>
-                    <img src={"/Images/shopping-cart.jpg"} alt={"shopping-cart"}/>
+                    Cart
                     {cart.cartItems.length > 0 && (
                       <Badge pill bg='danger'>
                         {cart.cartItems.reduce((a, c) => a + c.qty, 0)}
@@ -96,7 +96,6 @@ function App() {
  <Route path='/' element={<HomeScreen />} />
               <Route path='/profile' element={<ProfileScreen />} />
 
-             
               <Route path='/order/:id' element={<OrderScreen />}></Route>
               <Route path='/placeorder' element={<PlaceOrderScreen />} />
               <Route path='/cart' element={<CartScreen />} />
