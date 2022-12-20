@@ -69,7 +69,7 @@ export default function CartScreen() {
                                                         updateCartHandler(item, item.qty - 1)
                                                     }
                                                     variant="light"
-                                                    disabled={item.quantity === 1}
+                                                    disabled={item.qty === 1}
                                                 >
                                                     <i className="fas fa-minus-circle"></i>
                                                 </Button>{' '}

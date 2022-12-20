@@ -47,22 +47,23 @@ function ProductScreen() {
         fetchData();
     }, [slug]);
 
-    const { state, dispatch: ctxDispatch } = useContext(Store);
+    const {  dispatch: ctxDispatch } = useContext(Store);
 
-
+    const [qty,setQty]= useState()
         const addToCartHandler = async () => {
-            const { cart } = state;
-            const existItem = cart.cartItems.find((x) => x._id === product._id);
-            const quantity = existItem ? existItem.quantity + 1 : 1;
+
+
+
+
             const { data } = await axios.get(`/api/products/${product._id}`);
-            if (data.countInStock < quantity) {
+            if (data.countInStock < qty) {
                 window.alert('Sorry. Product is out of stock');
                 return;
             }
             ctxDispatch({
                 type: 'CART_ADD_ITEM',
 
-                payload: { ...product, quantity },
+                payload: { ...product, qty },
             });
             navigate('/cart');
         };
@@ -94,7 +95,7 @@ function ProductScreen() {
                                     numReviews={product.numReviews}
                                 ></Rating>
                             </ListGroup.Item>
-                            <ListGroup.Item>Pirce : ${product.price}</ListGroup.Item>
+                            <ListGroup.Item>Price : ${product.price}</ListGroup.Item>
                             <ListGroup.Item>
                                 Description:
                                 <p>{product.description}</p>
@@ -105,6 +106,29 @@ function ProductScreen() {
                         <Card>
                             <Card.Body>
                                 <ListGroup variant="flush">
+                                    <ListGroup.Item>
+                                        <Row>
+                                            <select
+                                                value={parseInt(qty)}
+                                                onChange={(e) => setQty( e.target.value)}
+
+
+                                            >
+
+                                                {[...Array(product.countInStock).keys()].map(
+                                                    (x) => (
+                                                        <option key={x } value={x }>
+                                                            {x }
+                                                        </option>
+                                                    )
+                                                )}
+                                            </select>
+                                            <Col>Quantity</Col>
+                                            <Col>{qty}</Col>
+
+
+                                        </Row>
+                                    </ListGroup.Item>
                                     <ListGroup.Item>
                                         <Row>
                                             <Col>Price:</Col>
