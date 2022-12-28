@@ -49,7 +49,7 @@ function ProductScreen() {
 
     const {  dispatch: ctxDispatch } = useContext(Store);
 
-    const [qty,setQty]= useState()
+    const [qty,setQty]= useState(0)
         const addToCartHandler = async () => {
 
 
