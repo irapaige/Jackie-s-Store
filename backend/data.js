@@ -11,9 +11,10 @@ const data = {
 email:'mynannice@hotmail.com',
   password:bcrypt.hashSync('123456'),
 isAdmin:false,
-},
+}
 
   ],
+
     products: [
       {
         // _id: '1',
