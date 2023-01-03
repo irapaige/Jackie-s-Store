@@ -28,7 +28,7 @@ app.use('/api/seed', seedRouter);
 app.use('/api/products', productRouter);
 app.use('/api/users', userRouter);
 app.use('/api/orders', orderRouter);
-app.get('/api/config/paypal',(req,res) =>{
+app.get('/api/config/paypal',(  req,res) =>{
 });
 const __dirname = path.resolve();
 app.use(express.static(path.join(__dirname, '/frontend/build')));

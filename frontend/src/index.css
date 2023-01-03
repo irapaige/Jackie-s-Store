@@ -15,7 +15,7 @@ main {
 
   flex: 1;
 }
-.btn-primary {
+.btn-primary, .btn-outline-primary {
   background-color: #f0c040;
   color: #000000;
 }
@@ -76,4 +76,7 @@ main {
 }
 .active-nav {
   left: 0;
+}
+.text-bold {
+  font-weight: bold;
 }
