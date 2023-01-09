@@ -1,7 +1,9 @@
 import mongoose from 'mongoose';
 
 const orderSchema = new mongoose.Schema(
+
     {
+
         orderItems: [
             {
                 slug: { type: String, required: true },
